@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Kubus" motionHint="adaptive" trackingMode="car" optimizeTrackingFor="default"/>
+
+</Tracking>
+
+<Assembly name="Kubuss_assembly" assemblyId="fa62bac141b7456aa40da287687d1d18">
+<Part name="Kubus" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="Database_Kubus_6cm_V2" translation="0.00574975 0.0203864 0.268741" rotation="AD: 0.999369 0.131696 -0.306856 224.298" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V3" translation="0.00364927 0.0280043 0.24521" rotation="AD: 0.997825 0.11484 -0.712949 194.869" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V4" translation="-0.000212528 0.0244746 0.255643" rotation="AD: 0.997338 -0.123988 0.740736 195.232" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V5" translation="0.00239109 0.00561114 0.26882" rotation="AD: -0.995174 0.29307 -0.43801 118.809" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V6" translation="-0.00237802 0.00231783 0.269285" rotation="AD: 0.900954 -0.740135 0.977582 228.293" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

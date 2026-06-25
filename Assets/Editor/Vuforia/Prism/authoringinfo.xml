@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="11.4.4">
+<ModelTarget name="Prism" targetId="7bf02575c4994ebb8da51de1ccf944f6" version="14.0" toolVersion="11.4.4" bbox="-0.166977 0.00170371 -0.0951692 -0.114122 0.0623234 -0.048844" upVector="0 0 -1" previewImage="7bf02575c4994ebb8da51de1ccf944f6_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Prisms_assembly" assemblyId="2aeec62200ef4ad18c415375170d7794">
+<Part name="Prism" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="0.13986 -0.0250566 0.208433" rotation="AD: -0.0132791 -1.07046 2.80098 179.806" image="Prism_GuideView_0000.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0001" translation="0.0115682 -0.040476 0.309125" rotation="AD: -0.943874 -0.388921 1.67949 167.308" image="Prism_GuideView_0001.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0002" translation="0.0480411 0.0780259 0.0210443" rotation="AD: 0.996151 -0.137323 0.844551 194.063" image="Prism_GuideView_0002.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0003" translation="-0.141669 0.076509 0.159914" rotation="AD: -1 -0.00554112 0.00790172 109.922" image="Prism_GuideView_0003.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0004" translation="-0.0905471 0.0755734 0.0437986" rotation="AD: 0.999943 -0.0452164 0.248269 200.029" image="Prism_GuideView_0004.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0005" translation="0.143178 -0.0517325 0.206386" rotation="AD: 0.0330203 -1.22093 1.74106 181.248" image="Prism_GuideView_0005.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0006" translation="0.13986 0.00486029 0.233459" rotation="AD: -0.0271566 -1.01522 5.72819 179.905" image="Prism_GuideView_0006.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0007" translation="-0.0627078 0.120517 0.0669444" rotation="AD: 0.999066 -0.136999 0.358474 219.269" image="Prism_GuideView_0007.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0008" translation="0.0208036 0.124553 0.0535007" rotation="AD: 0.990596 -0.252178 0.699342 212.176" image="Prism_GuideView_0008.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0009" translation="0.0193183 0.121774 0.0498489" rotation="AD: 0.9916 -0.23882 0.693029 210.977" image="Prism_GuideView_0009.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0010" translation="-0.0487043 0.118692 0.0560994" rotation="AD: 0.998644 -0.14442 0.412728 215.545" image="Prism_GuideView_0010.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0011" translation="-0.114236 0.0178852 0.284003" rotation="AD: -0.99917 0.219227 0.381739 64.2207" image="Prism_GuideView_0011.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0012" translation="-0.140973 0.045238 0.23537" rotation="AD: -1 -0.00683308 -0.0123003 58.1112" image="Prism_GuideView_0012.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0013" translation="-0.143716 0.0582662 0.215536" rotation="AD: -0.999989 -0.073335 -0.122269 62.419" image="Prism_GuideView_0013.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0014" translation="-0.139035 -0.00410604 0.25312" rotation="AD: -1 0.0216154 0.0976317 25.0881" image="Prism_GuideView_0014.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0015" translation="0.126648 0.0954144 0.143137" rotation="AD: 0.161051 1.16843 1.90687 193.372" image="Prism_GuideView_0015.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0016" translation="0.136933 0.0800949 0.200027" rotation="AD: 0.0497107 1.05924 3.02902 185.072" image="Prism_GuideView_0016.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0017" translation="0.144109 0.0720429 0.178591" rotation="AD: -0.175622 1.41164 1.39445 170.045" image="Prism_GuideView_0017.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0018" translation="0.140878 0.0494918 0.236636" rotation="AD: -0.00530633 1.01017 7.06452 179.404" image="Prism_GuideView_0018.png" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>

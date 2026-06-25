@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="11.4.4">
+<ModelTarget name="Kubus" targetId="d632db52343a486380f5cbd6b61f3f1f" version="14.0" toolVersion="11.4.4" bbox="-0.0299555 -0.00250618 -0.0319646 0.0350106 0.0624387 0.0329627" upVector="0 1 0" previewImage="d632db52343a486380f5cbd6b61f3f1f_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Kubuss_assembly" assemblyId="fa62bac141b7456aa40da287687d1d18">
+<Part name="Kubus" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="Database_Kubus_6cm_V2" translation="0.00574975 0.0203864 0.268741" rotation="AD: 0.999369 0.131696 -0.306856 224.298" image="Kubus_Database_Kubus_6cm_V2.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V3" translation="0.00364927 0.0280043 0.24521" rotation="AD: 0.997825 0.11484 -0.712949 194.869" image="Kubus_Database_Kubus_6cm_V3.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V4" translation="-0.000212528 0.0244746 0.255643" rotation="AD: 0.997338 -0.123988 0.740736 195.232" image="Kubus_Database_Kubus_6cm_V4.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V5" translation="0.00239109 0.00561114 0.26882" rotation="AD: -0.995174 0.29307 -0.43801 118.809" image="Kubus_Database_Kubus_6cm_V5.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="Database_Kubus_6cm_V6" translation="-0.00237802 0.00231783 0.269285" rotation="AD: 0.900954 -0.740135 0.977582 228.293" image="Kubus_Database_Kubus_6cm_V6.png" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>
