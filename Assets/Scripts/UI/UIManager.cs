@@ -12,11 +12,18 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI dialogueText; // Komponen TextMeshPro pada objek 'Dialogue'
     public CanvasGroup dialogueCanvasGroup;
     public GameObject KotakMisi;
+    public GameObject tapIndicator;
+
+    [Header("Teks Misi Global")]
     public GameObject Misi1;
     public GameObject Misi2;
     public GameObject Misi3;
-    public GameObject tapIndicator;
-
+    public TextMeshProUGUI namaMisi1;
+    public TextMeshProUGUI namaMisi2;
+    public TextMeshProUGUI namaMisi3;
+    public TextMeshProUGUI counterMisi1;
+    public TextMeshProUGUI counterMisi2;
+    public TextMeshProUGUI counterMisi3;
 
     [Header("Pop Up Ketemu Bangun Ruang")]
     public GameObject iconKubus;
@@ -616,6 +623,7 @@ public class UIManager : MonoBehaviour
     }
     
     public void SetTombolNextLevel(bool status){
+        SFXManager.Instance.MainkanClick();
         if(tombolNextLevel != null) tombolNextLevel.SetActive(status);
     }
 }

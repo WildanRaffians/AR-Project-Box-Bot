@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class VertexController : MonoBehaviour
 {
-    public LevelManager manager;
+    public Level1Manager manager;
     private bool sudahDiklik = false;
     
     // Variabel memori untuk menyimpan status awal
@@ -18,6 +18,10 @@ public class VertexController : MonoBehaviour
         if (rend != null)
         {
             warnaAsli = rend.material.color;
+        }
+        if (manager == null)
+        {
+            manager = Object.FindFirstObjectByType<Level1Manager>();
         }
     }
 

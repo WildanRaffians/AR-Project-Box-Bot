@@ -4,7 +4,7 @@ public class VarianController : MonoBehaviour
 {
     private Animator anim;
     private bool isOpened = false;
-    public LevelManager levelManager;
+    public Level3Manager levelManager;
     
     [Header("Settings")]
     public int variantID; // Set di Inspector: 0, 1, atau 2
@@ -15,7 +15,7 @@ public class VarianController : MonoBehaviour
         
         if (levelManager == null)
         {
-            levelManager = Object.FindFirstObjectByType<LevelManager>();
+            levelManager = Object.FindFirstObjectByType<Level3Manager>();
         }
     }
 

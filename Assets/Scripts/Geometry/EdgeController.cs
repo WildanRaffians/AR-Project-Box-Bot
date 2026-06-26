@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EdgeController : MonoBehaviour
 {
-     public LevelManager manager;
+     public Level1Manager manager;
     private bool sudahDiklik = false;
-    private BoxCollider col;
+    private Collider col;
     private Color warnaAsli;
     private Renderer rend;
     void Start()
@@ -15,6 +15,10 @@ public class EdgeController : MonoBehaviour
         if (rend != null)
         {
             warnaAsli = rend.material.color;
+        }
+        if (manager == null)
+        {
+            manager = Object.FindFirstObjectByType<Level1Manager>();
         }
     }
 
@@ -40,31 +44,38 @@ public class EdgeController : MonoBehaviour
     {
         if (!sudahDiklik && col == null)
         {
-            // 1. Ambil data ukuran visual objek (Renderer)
-            Renderer rendr = GetComponent<Renderer>();
-            if (rendr == null) return;
+            //OPSI DENGAN MESHCOLLIDER
 
-            // 2. Suntikkan BoxCollider biasa
-            BoxCollider box = gameObject.AddComponent<BoxCollider>();
+            // MeshCollider meshCol = gameObject.AddComponent<MeshCollider>();
             
-            // 3. MATEMATIKA OTOMATIS: Paksa BoxCollider mengikuti ukuran lokal objek
-            // Kita ubah ukuran koordinat dunia (Bounds) menjadi koordinat lokal objek
-            Vector3 ukuranLokal = transform.InverseTransformVector(rendr.bounds.size);
+            // // Wajib dinyalakan agar bentuk miringnya terdeteksi sempurna oleh Raycast
+            // meshCol.convex = true; 
             
-            // Sifat absolut: pastikan tidak ada nilai minus pada ukuran
-            box.size = new Vector3(Mathf.Abs(ukuranLokal.x), Mathf.Abs(ukuranLokal.y), Mathf.Abs(ukuranLokal.z));
-            box.center = Vector3.zero; // Titik pusat otomatis di tengah objek lokal
+            // // Simpan ke variabel global jika kamu menggunakan 'col' untuk Destroy nanti
+            // col = meshCol;
 
-            // 4. BONUS PERTEBAL: Jika rusuk terlalu tipis, kita beri toleransi tebal (misal 0.01 atau 1cm)
-            // agar jempol siswa lebih mudah menyentuhnya di AR
-            Vector3 s = box.size;
-            if (s.x < 0.0002f) s.x = 0.0002f;
-            if (s.y < 0.0002f) s.y = 0.0002f;
-            if (s.z < 0.0002f) s.z = 0.0002f;
-            box.size = s;
+            //OPSI DENGAN BOXCOLLIDER
 
-            // Simpan referensinya ke variabel global
-            col = box; 
+            // 1. Tambahkan BoxCollider
+            BoxCollider boxCol = gameObject.AddComponent<BoxCollider>();
+            
+            // 2. Trik UX: Ambil ukuran aslinya yang sangat tipis
+            Vector3 ukuranAsli = boxCol.size;
+            
+            // 3. Gemukkan sisi-sisinya (kecuali panjangnya) agar gampang disentuh jari!
+            // Mathf.Max akan memastikan ketebalannya minimal 0.05f
+            float ketebalanSentuh = 0.00005f; 
+            
+            // Asumsi: Sumbu Y adalah panjang rusuk. Kita gemukkan sumbu X dan Z.
+            // (Jika yang panjang adalah sumbu Z, ubah kodenya menyesuaikan sumbu yang pendek)
+            boxCol.size = new Vector3(
+                Mathf.Max(ukuranAsli.x, ketebalanSentuh), 
+                ukuranAsli.y, 
+                Mathf.Max(ukuranAsli.z, ketebalanSentuh)
+            );
+
+            // Simpan ke variabel global
+            col = boxCol;
             
             Debug.Log($"[SUNTIK EDGE] BoxCollider otomatis terpasang pada {gameObject.name}");
         }

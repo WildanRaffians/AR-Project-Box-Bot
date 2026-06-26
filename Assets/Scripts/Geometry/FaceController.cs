@@ -3,7 +3,7 @@ using UnityEngine;
 public class FaceController : MonoBehaviour
 {
     [Header("Referensi Manager")]
-    public LevelManager manager;
+    public Level1Manager manager;
     
     private bool sudahDiklik = false;
     private Color warnaAsli;
@@ -18,6 +18,10 @@ public class FaceController : MonoBehaviour
         if (rend != null)
         {
             warnaAsli = rend.material.color;
+        }
+        if (manager == null)
+        {
+            manager = Object.FindFirstObjectByType<Level1Manager>();
         }
     }
 

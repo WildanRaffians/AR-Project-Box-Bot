@@ -4,7 +4,6 @@ using System.Collections;
 
 public class PreLevelManager : MonoBehaviour
 {
-    public LevelManager levelManager;
     public UIManager uiManager;
     private GameObject objekBangunAktif;
     private string namaBangun = "";
@@ -45,7 +44,7 @@ public class PreLevelManager : MonoBehaviour
 //TRACKER
     public void OnRubikFound()
     {
-        levelManager.SetupDataBangun(LevelManager.TipeBangun.Kubus);
+        GameSessionManager.Instance.SetupDataBangun(GameSessionManager.TipeBangun.Kubus);
         MatikanSemuaTracker();
         namaBangun = "kubus";
         
@@ -59,8 +58,7 @@ public class PreLevelManager : MonoBehaviour
     }
     public void OnPrismFound()
     {
-        
-        levelManager.SetupDataBangun(LevelManager.TipeBangun.PrismaSegitiga);
+        GameSessionManager.Instance.SetupDataBangun(GameSessionManager.TipeBangun.PrismaSegitiga);
         MatikanSemuaTracker();
         namaBangun = "prisma segitiga";
 
@@ -73,8 +71,7 @@ public class PreLevelManager : MonoBehaviour
     }
     public void OnBalokFound()
     {
-        
-        levelManager.SetupDataBangun(LevelManager.TipeBangun.Balok);
+        GameSessionManager.Instance.SetupDataBangun(GameSessionManager.TipeBangun.Balok);
         MatikanSemuaTracker();
         namaBangun = "balok";
 
@@ -121,19 +118,18 @@ public class PreLevelManager : MonoBehaviour
     {
         uiManager.TutupPopupPilihLevel();
         SFXManager.Instance.MainkanClick();
-        levelManager.MulaiLevel(1);
+        GameSessionManager.Instance.MulaiLevel(1);
     }
     public void MulaiLevel2()
     {
         uiManager.TutupPopupPilihLevel();
         SFXManager.Instance.MainkanClick();
-        levelManager.MulaiLevel(2);
+        GameSessionManager.Instance.MulaiLevel(2);
     }
     public void MulaiLevel3()
     {
         uiManager.TutupPopupPilihLevel();
         SFXManager.Instance.MainkanClick();
-        levelManager.MulaiLevel(3);
-
+        GameSessionManager.Instance.MulaiLevel(3);
     }
 }
