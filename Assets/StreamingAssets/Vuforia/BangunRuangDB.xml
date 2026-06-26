@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="imgBola" size="0.006000 0.008000" />
+    <ImageTarget name="imgKerucut" size="0.006000 0.008000" />
+    <ImageTarget name="imgTabung" size="0.006000 0.008000" />
+    <ImageTarget name="imgLimas" size="0.006000 0.008000" />
     <ImageTarget name="imgBalok" size="0.060000 0.080000" />
     <ImageTarget name="imgprisma" size="0.100000 0.133333" />
     <ImageTarget name="imgkubus" size="0.100000 0.133333" />

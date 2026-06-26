@@ -69,6 +69,36 @@ public class PencapaianManager : MonoBehaviour
     public GameObject MedaliSilverBola;
     public GameObject MedaliGoldBola;
 
+    void Awake()
+    {
+        MedaliGoldKubus.SetActive(false);
+        MedaliSilverKubus.SetActive(false);
+        MedaliOrenKubus.SetActive(false);
+        
+        MedaliGoldBalok.SetActive(false);
+        MedaliSilverBalok.SetActive(false);
+        MedaliOrenBalok.SetActive(false);
+
+        MedaliGoldPrisma.SetActive(false);
+        MedaliSilverPrisma.SetActive(false);
+        MedaliOrenPrisma.SetActive(false);
+
+        MedaliGoldLimas.SetActive(false);
+        MedaliSilverLimas.SetActive(false);
+        MedaliOrenLimas.SetActive(false);
+
+        MedaliGoldTabung.SetActive(false);
+        MedaliSilverTabung.SetActive(false);
+        MedaliOrenTabung.SetActive(false);
+
+        MedaliGoldKerucut.SetActive(false);
+        MedaliSilverKerucut.SetActive(false);
+        MedaliOrenKerucut.SetActive(false);
+
+        MedaliGoldBola.SetActive(false);
+        MedaliSilverBola.SetActive(false);
+        MedaliOrenBola.SetActive(false);
+    }
     void Start()
     {
         //KUBUS
@@ -107,9 +137,6 @@ public class PencapaianManager : MonoBehaviour
             titleKubus.alpha = Mathf.Clamp01(0.45f);
             messageKubus.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangKubus = 0;
-            MedaliGoldKubus.SetActive(false);
-            MedaliSilverKubus.SetActive(false);
-            MedaliOrenKubus.SetActive(false);
         }        
         
         //Balok
@@ -148,9 +175,6 @@ public class PencapaianManager : MonoBehaviour
             titleBalok.alpha = Mathf.Clamp01(0.45f);
             messageBalok.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangBalok = 0;
-            MedaliGoldBalok.SetActive(false);
-            MedaliSilverBalok.SetActive(false);
-            MedaliOrenBalok.SetActive(false);
         }
         
         //Prisma
@@ -189,9 +213,7 @@ public class PencapaianManager : MonoBehaviour
             titlePrisma.alpha = Mathf.Clamp01(0.45f);
             messagePrisma.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangPrisma = 0;
-            MedaliGoldPrisma.SetActive(false);
-            MedaliSilverPrisma.SetActive(false);
-            MedaliOrenPrisma.SetActive(false);
+            
         }
         
         //Limas
@@ -230,9 +252,7 @@ public class PencapaianManager : MonoBehaviour
             titleLimas.alpha = Mathf.Clamp01(0.45f);
             messageLimas.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangLimas = 0;
-            MedaliGoldLimas.SetActive(false);
-            MedaliSilverLimas.SetActive(false);
-            MedaliOrenLimas.SetActive(false);
+            
         }
         
         //Tabung
@@ -271,9 +291,7 @@ public class PencapaianManager : MonoBehaviour
             titleTabung.alpha = Mathf.Clamp01(0.45f);
             messageTabung.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangTabung = 0;
-            MedaliGoldTabung.SetActive(false);
-            MedaliSilverTabung.SetActive(false);
-            MedaliOrenTabung.SetActive(false);
+            
         }
         
         //Kerucut
@@ -312,9 +330,7 @@ public class PencapaianManager : MonoBehaviour
             titleKerucut.alpha = Mathf.Clamp01(0.45f);
             messageKerucut.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangKerucut = 0;
-            MedaliGoldKerucut.SetActive(false);
-            MedaliSilverKerucut.SetActive(false);
-            MedaliOrenKerucut.SetActive(false);
+            
         }
         
         //Bola
@@ -353,9 +369,7 @@ public class PencapaianManager : MonoBehaviour
             titleBola.alpha = Mathf.Clamp01(0.45f);
             messageBola.alpha = Mathf.Clamp01(0.45f);
             jumlahBintangBola = 0;
-            MedaliGoldBola.SetActive(false);
-            MedaliSilverBola.SetActive(false);
-            MedaliOrenBola.SetActive(false);
+            
         }
 
         

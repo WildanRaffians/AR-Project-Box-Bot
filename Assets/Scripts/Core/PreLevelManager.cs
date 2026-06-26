@@ -16,6 +16,10 @@ public class PreLevelManager : MonoBehaviour
     public GameObject rubikTracker;    
     public GameObject prismTracker;
     public GameObject balokTracker;
+    public GameObject limasTracker;
+    public GameObject tabungTracker;
+    public GameObject kerucutTracker;
+    public GameObject bolaTracker;
     
     [Header("Object Bangun Ruang")]
     public GameObject kubusSolid;
@@ -35,6 +39,10 @@ public class PreLevelManager : MonoBehaviour
         rubikTracker.SetActive(true);
         prismTracker.SetActive(true);
         balokTracker.SetActive(true);
+        limasTracker.SetActive(true);
+        tabungTracker.SetActive(true);
+        kerucutTracker.SetActive(true);
+        bolaTracker.SetActive(true);
 
         planeFinder.SetActive(false);
         groundStage.SetActive(false); 
@@ -49,6 +57,7 @@ public class PreLevelManager : MonoBehaviour
         namaBangun = "kubus";
         
         kubusSolid.SetActive(true); // Siapkan kubus virtual
+        
         prismaSolid.SetActive(false); 
         balokSolid.SetActive(false); 
         objekBangunAktif = kubusSolid;
@@ -63,7 +72,7 @@ public class PreLevelManager : MonoBehaviour
         namaBangun = "prisma segitiga";
 
         prismaSolid.SetActive(true); // Siapkan prisma virtual
-        // AturColliderBangunRuang();
+        
         kubusSolid.SetActive(false);
         balokSolid.SetActive(false);
         objekBangunAktif = prismaSolid;
@@ -76,16 +85,26 @@ public class PreLevelManager : MonoBehaviour
         namaBangun = "balok";
 
         balokSolid.SetActive(true); // Siapkan prisma virtual
+        
         kubusSolid.SetActive(false);
         prismaSolid.SetActive(false);
         objekBangunAktif = balokSolid;
         NyalakanLantai(); 
+    }
+    
+    public void OnOtherFound()
+    {
+        uiManager.OnCubeFound("other");
     }
     private void MatikanSemuaTracker()
     {
         if (rubikTracker != null) rubikTracker.SetActive(false);
         if (prismTracker != null) prismTracker.SetActive(false);
         if (balokTracker != null) balokTracker.SetActive(false);
+        if (limasTracker != null) limasTracker.SetActive(false);
+        if (tabungTracker != null) tabungTracker.SetActive(false);
+        if (kerucutTracker != null) kerucutTracker.SetActive(false);
+        if (bolaTracker != null) bolaTracker.SetActive(false);
         Debug.Log("traker mati!");
     }
 

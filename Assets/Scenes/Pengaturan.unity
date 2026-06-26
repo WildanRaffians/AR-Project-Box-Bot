@@ -1193,7 +1193,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204047702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000025922607}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1204,7 +1204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000011470753, y: -0.001023227}
+  m_AnchoredPosition: {x: 0, y: 608}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &204047704
@@ -3039,7 +3039,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 775662203}
   m_HandleRect: {fileID: 775662202}
   m_Direction: 2
-  m_Value: 1.0000011
+  m_Value: 0.22983342
   m_Size: 0.5203887
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5611,9 +5611,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "BGM & SFX : \n\nLobby Time by Kevin MacLeod | https://incompetech.com/\r\nMusic
-    promoted by https://www.chosic.com/free-music/all/\r\n\nSound Effect by Rusu
-    Gabriel from Pixabay\r\nSound Effect by Sophia Con\xE7ei\xE7\xE3o from Pixabay\r\nSound
+  m_text: "BGM:\nLobby Time by Kevin MacLeod | https://incompetech.com/\r\nMusic
+    promoted by https://www.chosic.com/free-music/all/\r\n\nSFX:\nSound Effect by
+    Rusu Gabriel from Pixabay\r\nSound Effect by Sophia Con\xE7ei\xE7\xE3o from Pixabay\r\nSound
     Effect by freesoundeffects from Pixabay\r\nSound Effect by freesoundeffects from
     Pixabay\r\nSound Effect by freesound_community from Pixabay\r\nSound Effect by
     floraphonic from Pixabay\r\nSound Effect by Alex from Pixabay\r\nSound Effect

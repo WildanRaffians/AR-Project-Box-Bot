@@ -146,16 +146,32 @@ public class UIManager : MonoBehaviour
                 iconKubus.SetActive(false);
                 iconBalok.SetActive(false);
             }
+            else
+            {
+                teksTagBangunRuang.text = "----";
+                teksPopupFound.text = "Level belum tersedia.";
+                iconPrisma.SetActive(false);
+                iconKubus.SetActive(false);
+                iconBalok.SetActive(false);
+            }
 
-            StartCoroutine(SequenceOnCubeFound()); // Durasi 0.5 detik
+            StartCoroutine(SequenceOnCubeFound(namaBangun)); // Durasi 0.5 detik
         }
 
         // 3. Ubah Teks Dialog
-        arpyAnim.SetTrigger("doHU");
         SFXManager.Instance.MainkanArpyNoise(1);
-        ShowCubeExplanation(namaKapital + " Ditemukan! Ayo mulai bermain.");
+        if(namaBangun == "other")
+        {
+            arpyAnim.SetTrigger("doIdle2");
+            ShowCubeExplanation("Level masih dalam pengembangan!");   
+        }
+        else
+        {
+            arpyAnim.SetTrigger("doHU");
+            ShowCubeExplanation(namaKapital + " Ditemukan! Ayo mulai bermain.");
+        }
     }
-    IEnumerator SequenceOnCubeFound()
+    IEnumerator SequenceOnCubeFound(string namaBangun)
     {
         popupCubeFound.SetActive(true);
             
@@ -163,7 +179,15 @@ public class UIManager : MonoBehaviour
         StartCoroutine(ScalePopup(2, 0.5f)); // Durasi 0.5 detik
         yield return new WaitForSeconds(2f);
         TutupPopup();
-        ShowCubeExplanation("Cari permukaan datar seperti meja atau lantai!\nTunggu sampai ada persegi putih di tengah, lalu ketuk layar.");
+        if(namaBangun == "other")
+        {
+            tagBangunRuang.SetActive(false);
+            ShowCubeExplanation("Arahkan kamera pada image target bangurn ruang yang ingin kamu pelajari.");
+        }
+        else
+        {
+            ShowCubeExplanation("Cari area datar seperti meja atau lantai!\nTunggu sampai ada persegi putih di tengah, lalu ketuk layar.");
+        }
     }
 
     public void OnMulaiLevel(string namaBangun, int level)
