@@ -28,19 +28,17 @@ public class TutorialManager : MonoBehaviour
 
     private void CheckFirstTimePlay()
     {
-        
         // Mengecek key "IsFirstTime". Jika key belum pernah dibuat, kembalikan nilai 1 (True)
         int isFirstTime = PlayerPrefs.GetInt("IsFirstTime", 1);
-        // int isFirstTime = 1;
 
         if (isFirstTime == 1)
         {
-            // Munculkan tutorial karena ini peluncuran pertama
+            // Munculkan tutorial
             StartCoroutine(SequencePlayTutorial()); 
         }
         else
         {
-            // Sembunyikan tutorial karena pemain sudah pernah membukanya
+            // Sembunyikan tutorial
             tutorialPanel.SetActive(false);
         }
     }

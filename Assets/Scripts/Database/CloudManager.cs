@@ -11,8 +11,6 @@ public class CloudManager : MonoBehaviour
     [Tooltip("Paste URL Firebase-mu di sini, wajib diakhiri tanda garis miring (/)")]
     public string urlFirebase = "https://boxbot-edu-default-rtdb.asia-southeast1.firebasedatabase.app/"; 
     
-    // Nama "folder" di dalam database-mu
-    private string namaFolderDatabase = "data_boxbot.json"; 
 
     void Awake()
     {
@@ -28,12 +26,12 @@ public class CloudManager : MonoBehaviour
     }
 
     // Fungsi ini bisa dipanggil dari mana saja
-    public void SinkronisasiKeCloud(string jsonTeks)
+    public void SinkronisasiKeCloud(string idPemain, string jsonTeks)
     {
         // Cek apakah ada koneksi internet sebelum mencoba mengirim
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            StartCoroutine(KirimData(jsonTeks));
+            StartCoroutine(KirimData(idPemain, jsonTeks));
         }
         else
         {
@@ -41,14 +39,15 @@ public class CloudManager : MonoBehaviour
         }
     }
 
-    private IEnumerator KirimData(string jsonTeks)
+    private IEnumerator KirimData(string idPemain, string jsonTeks)
     {
-        string urlLengkap = urlFirebase + namaFolderDatabase;
+        // URL KUNCI PERBAIKAN: Arahkan ke folder daftar_pemain dan gunakan ID pemain sebagai nama file
+        string urlLengkap = urlFirebase + "daftar_pemain/" + idPemain + ".json";
 
-        // Kita gunakan metode PUT agar data di awan selalu sama persis dengan data di HP
+        // Gunakan metode PUT agar data di cloud selalu sama persis dengan data di HP
         UnityWebRequest request = new UnityWebRequest(urlLengkap, "PUT");
 
-        // Ubah teks JSON menjadi format byte yang bisa dikirim lewat internet
+        // Ubah teks JSON menjadi format byte
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonTeks);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -56,18 +55,12 @@ public class CloudManager : MonoBehaviour
         // Beritahu Firebase bahwa paket yang kita kirim adalah file JSON
         request.SetRequestHeader("Content-Type", "application/json");
 
-        Debug.Log("☁️ [CLOUD] Sedang mengirim data ke Firebase...");
-
-        // Tunggu sampai proses pengiriman selesai
+        // Tunggu proses pengiriman selesai
         yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        
+        if (request.result == UnityWebRequest.Result.Success) 
         {
-            Debug.Log("✅ [CLOUD] SUKSES! Data berhasil diunggah ke Dashboard Guru!");
-        }
-        else
-        {
-            Debug.LogError("🚨 [CLOUD] Gagal mengirim data: " + request.error);
+            Debug.Log("✅ [CLOUD] Data pemain " + idPemain + " berhasil disinkronisasi!");
         }
     }
 }

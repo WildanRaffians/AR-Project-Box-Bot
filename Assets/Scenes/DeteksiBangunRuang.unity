@@ -2432,8 +2432,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Luas permukaan = \n2 (panjang x lebar) +\n 2 (lebar x tinggi) +\n 2(panjang
-    x tinggi)\n= 2 (pxl + lxt + pxt)
+  m_text: "Luas permukaan = \\n2 (panjang \xD7 lebar) +\\n 2 (lebar \xD7 tinggi)
+    +\\n 2(panjang \xD7 tinggi)\\n= 2 (p\xD7l + l\xD7t + p\xD7t)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4488,7 +4488,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V = Luas Alas x Tinggi\nV = 1/2 x a_segitiga x t_segitiga x t_prisma
+  m_text: "V = Luas Alas \xD7 Tinggi\\nV = 1/2 \xD7 a_segitiga \xD7 t_segitiga \xD7
+    t_prisma"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7326,7 +7327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Luas Permukaan = 6 x (s x s)
+  m_text: "Luas Permukaan = 6 \xD7 (s \xD7 s)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8653,7 +8654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V = Luas Alas x Tinggi\nV = s x s x s
+  m_text: "V = Luas Alas x Tinggi\\nV = s \xD7 s \xD7 s"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -37880,7 +37881,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Luas persegi panjang \n= p x l
+  m_text: "Luas persegi panjang \\n= p \xD7 l"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -40475,7 +40476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Luas permukaan = \n (3 x luas persegi panjang) + (2 x luas segitiga)
+  m_text: "Luas permukaan = \\n (3 \xD7 luas persegi panjang) + (2 \xD7 luas segitiga)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -41178,7 +41179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V = Luas Alas x Tinggi\nV = s x s x s
+  m_text: "V = Luas Alas \xD7 Tinggi\\nV = s \xD7 s \xD7 s"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -41817,9 +41818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Luas persegi panjang \n= p x l
-
-    \nLuas Segitga \n= 1/2 a x t'
+  m_text: "Luas persegi panjang \\n= p \xD7 l\n\\nLuas Segitga \\n= 1/2 a \xD7 t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

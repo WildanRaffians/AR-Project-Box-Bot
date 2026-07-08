@@ -382,7 +382,7 @@ public class Level3Manager : MonoBehaviour
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lengkap! Ada 6 persegi yang membentuk luas permukaan."));
             yield return StartCoroutine(gsm.TungguInputUser());
             gsm.arpyAnim.SetTrigger("doExpla"); SFXManager.Instance.MainkanArpyNoise(2);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumusnya adalah: Luas = 6 x (sisi x sisi)"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumusnya adalah: Luas = 6 × (sisi × sisi)"));
             yield return StartCoroutine(gsm.TungguInputUser());
         }
         else if(gsm.namaBangun == "prisma segitiga")
@@ -391,7 +391,7 @@ public class Level3Manager : MonoBehaviour
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lengkap! Ada 3 persegi panjang dan 2 segitiga yang membentuk luas permukaan."));
             yield return StartCoroutine(gsm.TungguInputUser());
             gsm.arpyAnim.SetTrigger("doExpla"); SFXManager.Instance.MainkanArpyNoise(2);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumus luas permukaan = 3 (panjang x lebar) + 2 (1/2 x alas x tinggi)"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumus luas permukaan = 3 (panjang × lebar) + 2 (1/2 × alas × tinggi)"));
             yield return StartCoroutine(gsm.TungguInputUser());
         }
         else if(gsm.namaBangun == "balok")

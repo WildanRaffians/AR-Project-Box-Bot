@@ -27,7 +27,7 @@ public class PencapaianLevel
 [Serializable]
 public class PemainData
 {
-    public string id_pemain; // ID kita pindahkan ke dalam sini
+    public string id_pemain;
     public string nama_siswa;
     public string kelas;
     public string terakhir_main;
@@ -81,7 +81,7 @@ public class OfflineDatabaseManager : MonoBehaviour
     // Fungsi menyimpan atau menimpa data pemain ke HP
     public void SimpanAtauUpdatePemain(PemainData dataPemain)
     {
-        // Cek apakah pemain dengan ID ini sudah ada di dalam brankas?
+        // Cek apakah pemain dengan ID ini sudah ada?
         int index = dbLokal.daftar_pemain.FindIndex(p => p.id_pemain == dataPemain.id_pemain);
 
         if (index >= 0)
@@ -95,15 +95,18 @@ public class OfflineDatabaseManager : MonoBehaviour
             dbLokal.daftar_pemain.Add(dataPemain);
         }
 
-        // Kunci brankasnya: Ubah ke teks JSON lalu tulis ke dalam file HP
+        // Ubah ke teks JSON lalu tulis ke dalam file HP
         string jsonTeks = JsonUtility.ToJson(dbLokal, true);
         File.WriteAllText(filePath, jsonTeks);
 
-        // Lempar salinan teks JSON tersebut ke awan!
+        // Sinkron ke cloud
         if (CloudManager.Instance != null)
         {
-            CloudManager.Instance.SinkronisasiKeCloud(jsonTeks);
+            // 1. Ubah HANYA data pemain yang sedang di-update ini menjadi JSON (Bukan dbLokal!)
+            string jsonSatuPemain = JsonUtility.ToJson(dataPemain);
+            
+            // 2. Kirim ID pemain dan data JSON-nya ke CloudManager
+            CloudManager.Instance.SinkronisasiKeCloud(dataPemain.id_pemain, jsonSatuPemain);
         }
-        
     }
 }

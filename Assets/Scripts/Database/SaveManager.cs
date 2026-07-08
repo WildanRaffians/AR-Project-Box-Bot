@@ -148,15 +148,15 @@ public class SaveManager : MonoBehaviour
 
         if (namaBangun.ToLower().Contains("prisma"))
         {
-            return pemainAktif.pencapaian_level.prisma_segitiga.level_tertinggi;
+            return pemainAktif.pencapaian_level.prisma_segitiga?.level_tertinggi ?? 1;
         }
         else if (namaBangun.ToLower().Contains("kubus"))
         {
-            return pemainAktif.pencapaian_level.kubus.level_tertinggi;
+            return pemainAktif.pencapaian_level.kubus?.level_tertinggi ?? 1;
         }
         else if (namaBangun.ToLower().Contains("balok"))
         {
-            return pemainAktif.pencapaian_level.balok.level_tertinggi;
+            return pemainAktif.pencapaian_level.balok?.level_tertinggi ?? 1;
         }
 
         return 1; // Default

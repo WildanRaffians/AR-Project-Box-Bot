@@ -25,7 +25,7 @@ public class GameSessionManager : MonoBehaviour
 
     [Header("Data Bangun Ruang Aktif")]
     public TipeBangun bangunSekarang;
-    public enum TipeBangun { Kubus, PrismaSegitiga, Balok }
+    public enum TipeBangun { Kubus, PrismaSegitiga, Balok, LimasPersegi, Tabung, Kerucut, Bola }
     
     // Variabel ini bisa diakses dari mana saja karena bersifat public
     public string namaBangun;
@@ -90,23 +90,21 @@ public class GameSessionManager : MonoBehaviour
 
     public void MulaiLevel(int level)
     {
-        // Ambil referensi agar kita bisa memanggil fungsi di dalamnya
+        // Ambil referensi agar bisa manggil fungsi di dalamnya
         Level1Manager lvl1 = level1Manager as Level1Manager;
         Level2Manager lvl2 = level2Manager as Level2Manager;
         Level3Manager lvl3 = level3Manager as Level3Manager;
 
-        // Nyalakan hanya level yang diminta dan EKSEKUSI fungsinya!
+        // Nyalakan hanya level yang diminta
         if (level == 1)
         {
-            Debug.Log("Memulai Level 1.");
             if(lvl1 != null) {
                 lvl1.enabled = true;
-                lvl1.StartLevelSisi(); // Panggil fungsi aslinya di sini!
+                lvl1.StartLevelSisi();
             }
         }
         else if (level == 2)
         {
-            Debug.Log("Memulai Level 2.");
             if(lvl2 != null) {
                 lvl2.enabled = true;
                 lvl2.StartLevelVolume();
@@ -114,7 +112,6 @@ public class GameSessionManager : MonoBehaviour
         }
         else if (level >= 3)
         {
-            Debug.Log("Memulai Level 3.");
             if(lvl3 != null) {
                 lvl3.enabled = true;
                 lvl3.StartLevel3();

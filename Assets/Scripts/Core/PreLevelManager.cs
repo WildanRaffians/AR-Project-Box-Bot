@@ -129,7 +129,6 @@ public class PreLevelManager : MonoBehaviour
         uiManager.ShowCubeExplanation(pesanArpy);
 
         uiManager.ShowPopupPilihLevel(namaBangun);
-        
     }
 
 // MULAI LEVEL

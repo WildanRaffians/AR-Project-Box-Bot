@@ -376,14 +376,14 @@ public class Level2Manager : MonoBehaviour
             if (currentVolume == 9)
             {
                 objekRumus.SetActive(true);
-                teksRumus.text = "Luas Alas = s x s";
+                teksRumus.text = "Luas Alas = s × s";
                 penggarisX.SetActive(true);
                 penggarisY.SetActive(true);
             }
             else if (currentVolume == 27)
             {
                 penggarisZ.SetActive(true);
-                teksRumus.text = "V = Luas Alas x Tinggi\nV = s x s x s";
+                teksRumus.text = "V = Luas Alas × Tinggi\nV = s × s × s";
             }
         }
         else
@@ -400,7 +400,7 @@ public class Level2Manager : MonoBehaviour
         {
             gsm.arpyAnim.SetTrigger("doHU");
             SFXManager.Instance.MainkanArpyNoise(1);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai pertama penuh! Alas ini berisi 3 x 3 = 9 kubus satuan."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai pertama penuh! Alas ini berisi 3 × 3 = 9 kubus satuan."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(2);
@@ -408,7 +408,7 @@ public class Level2Manager : MonoBehaviour
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(2);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya persegi maka rumusnya adalah sisi x sisi."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya persegi maka rumusnya adalah sisi × sisi."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lanjut isi kubus"));
         }
@@ -417,7 +417,7 @@ public class Level2Manager : MonoBehaviour
             gsm.arpyAnim.SetTrigger("doHU");
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(1);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai kedua selesai! Sekarang totalnya 9 + 9 = 18 atau 9 x 2 = 18 kubus satuan."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai kedua selesai! Sekarang totalnya 9 + 9 = 18 atau 9 × 2 = 18 kubus satuan."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             SFXManager.Instance.MainkanArpyNoise(3);
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Ayo Lanjutkan!"));
@@ -426,7 +426,7 @@ public class Level2Manager : MonoBehaviour
         {
             gsm.arpyAnim.SetTrigger("doHU");
             SFXManager.Instance.MainkanArpyNoise(1);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai ketiga penuh! Sekarang tingginya sudah 3 lapis dan berisi 9 + 9 + 9 = 27 atau 9 x 3 = 27 kubus satuan."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai ketiga penuh! Sekarang tingginya sudah 3 lapis dan berisi 9 + 9 + 9 = 27 atau 9 × 3 = 27 kubus satuan."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(4);
@@ -434,7 +434,7 @@ public class Level2Manager : MonoBehaviour
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doIdle2");
             SFXManager.Instance.MainkanArpyNoise(3);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lalu rumusnya adalah Sisi x Sisi x Sisi"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lalu rumusnya adalah Sisi × Sisi × Sisi"));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             SelesaikanLevelVolume();
         }
@@ -450,10 +450,10 @@ public class Level2Manager : MonoBehaviour
         {
             gsm.arpyAnim.SetTrigger("doHU");
             SFXManager.Instance.MainkanArpyNoise(1);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai pertama penuh! Alas ini berisi 3 x 4 = 12 kubus satuan."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai pertama penuh! Alas ini berisi 3 × 4 = 12 kubus satuan."));
             yield return StartCoroutine(gsm.TungguInputUser());
 
-            teksRumusBalok.text = "Luas Alas = Panjang x Lebar";
+            teksRumusBalok.text = "Luas Alas = Panjang × Lebar";
             objekRumusBalok.SetActive(true);
             penggarisXBalok.SetActive(true);
             penggarisYBalok.SetActive(true);
@@ -468,23 +468,23 @@ public class Level2Manager : MonoBehaviour
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(2);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya persegi panjang maka rumusnya adalah panjang x lebar."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya persegi panjang maka rumusnya adalah panjang × lebar."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lanjut isi balok"));
         }
         else if (count == 24)
         {
-            teksRumusBalok.text = "V = Luas Alas x Tinggi\nV = Panjang x Lebar x Tinggi";
+            teksRumusBalok.text = "V = Luas Alas × Tinggi\nV = Panjang × Lebar × Tinggi";
             penggarisZBalok.SetActive(true);
             penggarisZBalok.GetComponent<CubeAnimation>()?.MunculkanKubus();
 
             gsm.arpyAnim.SetTrigger("doHU");
             SFXManager.Instance.MainkanArpyNoise(1);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai kedua penuh! Sekarang tingginya sudah 2 lapis dan berisi 12 + 12 = 24 atau 4 x 3 x 2 = 24 kubus satuan."));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lantai kedua penuh! Sekarang tingginya sudah 2 lapis dan berisi 12 + 12 = 24 atau 4 × 3 × 2 = 24 kubus satuan."));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             gsm.arpyAnim.SetTrigger("doIdle2");
             SFXManager.Instance.MainkanArpyNoise(3);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Sehingga didapatkan rumus Volume Balok yaitu panjang x lebar x tinggi"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Sehingga didapatkan rumus Volume Balok yaitu panjang × lebar × tinggi"));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             SelesaikanLevelVolume();
         }
@@ -508,7 +508,7 @@ public class Level2Manager : MonoBehaviour
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lapis pertama yang berbentuk segitiga ini menutupi seluruh dasar prisma. Ini yang kita sebut Luas Alas!"));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             
-            teksRumusPrisma.text = "Luas Segitiga = 1/2 x alas segitiga x tinggi segitiga";
+            teksRumusPrisma.text = "Luas Segitiga = 1/2 × alas segitiga × tinggi segitiga";
             objekRumusPrisma.SetActive(true);
             penggarisXPrisma.SetActive(true);
             penggarisYPrisma.SetActive(true);
@@ -519,7 +519,7 @@ public class Level2Manager : MonoBehaviour
 
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(2);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya segitiga maka rumus luas alasnya adalah (1/2 x alas segitiga x tinggi segitiga)"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Karena bentuknya segitiga maka rumus luas alasnya adalah (1/2 × alas segitiga × tinggi segitiga)"));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             
             gsm.arpyAnim.SetTrigger("doIdle2");
@@ -531,7 +531,7 @@ public class Level2Manager : MonoBehaviour
         }
         else if (count == gsm.targetLapis) 
         {
-            teksRumusPrisma.text = "V = Luas Alas x Tinggi\nV = 1/2 x a_segitiga x t_segitiga x t_prisma";
+            teksRumusPrisma.text = "V = Luas Alas × Tinggi\nV = 1/2 × a_segitiga × t_segitiga × t_prisma";
             penggarisZPrisma.SetActive(true);
             penggarisZPrisma.GetComponent<CubeAnimation>()?.MunculkanKubus();
 
@@ -552,7 +552,7 @@ public class Level2Manager : MonoBehaviour
             
             gsm.arpyAnim.SetTrigger("doExpla");
             SFXManager.Instance.MainkanArpyNoise(3);
-            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Yaitu Luas Alas x Tinggi!"));
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Yaitu Luas Alas × Tinggi!"));
             yield return StartCoroutine(gsm.TungguInputUser()); 
             
             SelesaikanLevelVolume();
@@ -574,21 +574,21 @@ public class Level2Manager : MonoBehaviour
         {
             gsm.uiManager.ShowCompletionPopup(
                 "Level Volume Selesai!", 
-                "Hebat! Kamu mengisi 3 lapis berisi 9 kubus. Jadi 3 x 3 x 3 = 27!", 
+                "Hebat! Kamu mengisi 3 lapis berisi 9 kubus. Jadi 3 × 3 × 3 = 27!", 
                 bintangUntukDitampilkan);
         } 
         else if(gsm.namaBangun == "prisma segitiga")
         {
             gsm.uiManager.ShowCompletionPopup(
                 "Level Volume Selesai!", 
-                "Hebat! Kamu telah membuktikan bahwa Volume Prisma = Luas Alas x Tinggi.", 
+                "Hebat! Kamu telah membuktikan bahwa Volume Prisma = Luas Alas × Tinggi.", 
                 bintangUntukDitampilkan);
         }
         else if(gsm.namaBangun == "balok")
         {
             gsm.uiManager.ShowCompletionPopup(
                 "Level Volume Selesai!", 
-                "Hebat! Kamu telah membuktikan bahwa Volume Balok = Panjang x Lebar x Tinggi.", 
+                "Hebat! Kamu telah membuktikan bahwa Volume Balok = Panjang × Lebar × Tinggi.", 
                 bintangUntukDitampilkan);
         }
     }
