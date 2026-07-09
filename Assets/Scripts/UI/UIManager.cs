@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public GameObject iconKubus;
     public GameObject iconPrisma;
     public GameObject iconBalok;
+    public GameObject iconLimas;
     public TextMeshProUGUI teksPopupFound;
     public GameObject tagBangunRuang;
     public TextMeshProUGUI teksTagBangunRuang;
@@ -108,7 +109,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f); 
         if(dialogueText != null) dialogueText.enabled = true;
         dialogueText.GetComponent<SimpleFade>().Appear();
-
     }
     
     public void OnCubeFound(string namaBangun)
@@ -131,18 +131,29 @@ public class UIManager : MonoBehaviour
 
                 iconPrisma.SetActive(false);
                 iconBalok.SetActive(false);
+                iconLimas.SetActive(false);
             } 
             else if(namaBangun == "balok")
             {
                 iconBalok.SetActive(true);
 
                 iconKubus.SetActive(false);
+                iconLimas.SetActive(false);
                 iconPrisma.SetActive(false);
             }
             else if(namaBangun == "prisma segitiga")
             {
                 iconPrisma.SetActive(true);
 
+                iconKubus.SetActive(false);
+                iconLimas.SetActive(false);
+                iconBalok.SetActive(false);
+            }
+            else if(namaBangun == "limas persegi")
+            {
+                iconLimas.SetActive(true);
+
+                iconPrisma.SetActive(false);
                 iconKubus.SetActive(false);
                 iconBalok.SetActive(false);
             }
@@ -153,6 +164,7 @@ public class UIManager : MonoBehaviour
                 iconPrisma.SetActive(false);
                 iconKubus.SetActive(false);
                 iconBalok.SetActive(false);
+                iconLimas.SetActive(false);
             }
 
             StartCoroutine(SequenceOnCubeFound(namaBangun)); // Durasi 0.5 detik
@@ -197,7 +209,8 @@ public class UIManager : MonoBehaviour
         {
             teksPopupFound.fontSize = 42;
             teksPopupFound.text = "Seluruh level " + namaBangun + " telah selesai!\n\n Kembali ke menu...";
-        } else
+        } 
+        else
         {
             teksPopupFound.fontSize = 58;
             teksPopupFound.text = "Memulai level " + level + " " + namaBangun + "...";
@@ -208,6 +221,7 @@ public class UIManager : MonoBehaviour
 
             iconBalok.SetActive(false);
             iconPrisma.SetActive(false);
+            iconLimas.SetActive(false);
         } 
         else if(namaBangun == "balok")
         {
@@ -215,11 +229,21 @@ public class UIManager : MonoBehaviour
 
             iconPrisma.SetActive(false);
             iconKubus.SetActive(false);
+            iconLimas.SetActive(false);
         }
         else if(namaBangun == "prisma segitiga")
         {
             iconPrisma.SetActive(true);
 
+            iconBalok.SetActive(false);
+            iconKubus.SetActive(false);
+            iconLimas.SetActive(false);
+        }
+        else if(namaBangun == "limas persegi")
+        {
+            iconLimas.SetActive(true);
+
+            iconPrisma.SetActive(false);
             iconBalok.SetActive(false);
             iconKubus.SetActive(false);
         }

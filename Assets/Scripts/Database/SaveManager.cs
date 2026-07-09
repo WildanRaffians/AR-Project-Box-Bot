@@ -158,6 +158,22 @@ public class SaveManager : MonoBehaviour
         {
             return pemainAktif.pencapaian_level.balok?.level_tertinggi ?? 1;
         }
+        else if (namaBangun.ToLower().Contains("limas"))
+        {
+            return pemainAktif.pencapaian_level.limas_persegi?.level_tertinggi ?? 1;
+        }
+        else if (namaBangun.ToLower().Contains("tabung"))
+        {
+            return pemainAktif.pencapaian_level.tabung?.level_tertinggi ?? 1;
+        }
+        else if (namaBangun.ToLower().Contains("kerucut"))
+        {
+            return pemainAktif.pencapaian_level.kerucut?.level_tertinggi ?? 1;
+        }
+        else if (namaBangun.ToLower().Contains("bola"))
+        {
+            return pemainAktif.pencapaian_level.bola?.level_tertinggi ?? 1;
+        }
 
         return 1; // Default
     }

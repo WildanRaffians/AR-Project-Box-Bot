@@ -14,6 +14,7 @@ public class Level2Manager : MonoBehaviour
     public GameObject KubusLevel1;
     public GameObject PrismaLevel1;
     public GameObject BalokLevel1;
+    public GameObject limasLevel1;
 
     [Header("Level 2 Kubus")]
     public GameObject KubusLevel2;
@@ -50,10 +51,23 @@ public class Level2Manager : MonoBehaviour
     public GameObject penggarisYPrisma; 
     public GameObject penggarisZPrisma; 
 
+    
+    [Header("Level 2 Volume Limas")]
+    public GameObject LimasLevel2;     
+    public GameObject LimasBalokTujuan;     
+    public Transform limasIsi;
+    public Transform balokIsi;
+    public GameObject canvasTombolLimas;
+    public GameObject canvasRumusLimas;
+    private bool sedangAnimasi = false;
+    private bool limasPenuh = false;
+    
+
     [Header("Referensi Unsur (Glow)")]
     public ObjectGlow efekVolume;
     public ObjectGlow efekVolumePrisma;
     public ObjectGlow efekVolumeBalok;
+    public ObjectGlow efekVolumeLimas;
 
     // =========================================================
     // INPUT KHUSUS LEVEL 2
@@ -114,6 +128,14 @@ public class Level2Manager : MonoBehaviour
             penggarisYBalok.SetActive(false);
             penggarisZBalok.SetActive(false);
         }         
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            limasIsi.localScale = Vector3.zero;
+            balokIsi.localScale = new Vector3(118.1f, 87.3f, 0f); 
+            canvasTombolLimas.SetActive(false);
+            LimasBalokTujuan.SetActive(false);
+            canvasRumusLimas.SetActive(false);
+        }         
 
         currentVolume = 0;
         this.enabled = false; // Matikan input sementara selama dialog awal
@@ -140,6 +162,7 @@ public class Level2Manager : MonoBehaviour
         if (gsm.namaBangun=="kubus" && efekVolume != null) efekVolume.SetGlow(true); 
         if (gsm.namaBangun=="prisma segitiga" && efekVolumePrisma != null) efekVolumePrisma.SetGlow(true); 
         if (gsm.namaBangun=="balok" && efekVolumeBalok != null) efekVolumeBalok.SetGlow(true); 
+        if (gsm.namaBangun=="limas persegi" && efekVolumeLimas != null) efekVolumeLimas.SetGlow(true); 
         
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -156,6 +179,7 @@ public class Level2Manager : MonoBehaviour
         if (efekVolume != null) efekVolume.SetGlow(false); 
         if (efekVolumePrisma != null) efekVolumePrisma.SetGlow(false); 
         if (efekVolumeBalok != null) efekVolumeBalok.SetGlow(false); 
+        if (efekVolumeLimas != null) efekVolumeLimas.SetGlow(false); 
     
         gsm.arpyAnim.SetTrigger("doExpla");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -197,6 +221,14 @@ public class Level2Manager : MonoBehaviour
                 CubeAnimation anim = PrismaLevel2.GetComponent<CubeAnimation>();
                 if (anim != null) anim.MunculkanKubus();
             }
+            else if(gsm.namaBangun == "limas persegi") {
+                CubeAnimation animLevel1 = limasLevel1.GetComponent<CubeAnimation>();
+                animLevel1.HilangkanKubus();
+
+                LimasLevel2.SetActive(true);
+                CubeAnimation anim = LimasLevel2.GetComponent<CubeAnimation>();
+                if (anim != null) anim.MunculkanKubus();
+            }
         }
         else if (set == 2)
         {
@@ -227,7 +259,7 @@ public class Level2Manager : MonoBehaviour
             UpdateUIVolume();
 
             if (gsm.namaBangun == "kubus" && currentVolume % 9 == 0)
-                StartCoroutine(SequencePenjelasanPerLapis(currentVolume));
+                StartCoroutine(SequencePenjelasanPerLapisKubus(currentVolume));
             if (gsm.namaBangun == "balok" && currentVolume % 12 == 0)
                 StartCoroutine(SequencePenjelasanBalok(currentVolume));
         }
@@ -239,6 +271,10 @@ public class Level2Manager : MonoBehaviour
 
             if (currentVolume == 1 || currentVolume == gsm.targetLapis)
                 StartCoroutine(SequencePenjelasanPrisma(currentVolume));
+        }
+        else if (gsm.namaBangun == "limas persegi" && currentVolume < gsm.targetLapis) 
+        {        
+            StartCoroutine(AnimasiIsiLimas());    
         }
     }
 
@@ -364,6 +400,144 @@ public class Level2Manager : MonoBehaviour
         target.localPosition = posisiAkhir;
     }
 
+    private IEnumerator AnimasiIsiLimas()
+    {
+        sedangAnimasi = true;
+        this.enabled = false;
+        
+        float waktu = 0;
+        float durasi = 1.0f;
+
+        // KUNCI PERBAIKAN: Ambil skala penuh asli dari Inspector milikmu
+        Vector3 skalaPenuhLimas = new Vector3(191.666f, 191.666f, 96.666f);
+        
+        while (waktu < durasi)
+        {
+            // Lerp dari (0,0,0) menuju skala asli objek (191.66, 191.66, 96.66)
+            limasIsi.localScale = Vector3.Lerp(Vector3.zero, skalaPenuhLimas, waktu / durasi);
+            waktu += Time.deltaTime;
+            yield return null;
+        }
+        
+        limasIsi.localScale = skalaPenuhLimas;
+        limasPenuh = true;
+        sedangAnimasi = false;
+
+
+        StartCoroutine(SequencePenjelasanLimas());
+    }
+
+    // 2. Fungsi ini dipasang di event OnClick() pada Button "Pindahkan Isi"
+    public void PindahkanIsiKeBalok()
+    {
+        SFXManager.Instance.MainkanPop();
+        if (!sedangAnimasi && limasPenuh)
+        {
+            StartCoroutine(AnimasiTransferVolume());
+        }
+    }
+
+    private IEnumerator AnimasiTransferVolume()
+    {
+        sedangAnimasi = true;
+        canvasTombolLimas.SetActive(false); // Sembunyikan tombol saat transfer terjadi
+
+        float waktu = 0;
+        float durasi = 1.5f;
+
+        // Hitung target tinggi balok berdasarkan gsm.targetLapis saat ini
+        float tinggiBalokAwal = (float)currentVolume / 3f;
+        float tinggiBalokAkhir = (float)(currentVolume + 1) / 3f;
+        
+        Vector3 skalaPenuhLimas = new Vector3(191.666f, 191.666f, 96.666f);
+        Vector3 skalaBalokAwal = new Vector3(118.1f, 87.3f, 55.5f*tinggiBalokAwal);
+        Vector3 skalaBalokAkhir = new Vector3(118.1f, 87.3f, 55.5f*tinggiBalokAkhir);
+
+        while (waktu < durasi)
+        {
+            float progres = waktu / durasi;
+
+            // Limas menyusut ke 0
+            limasIsi.localScale = Vector3.Lerp(skalaPenuhLimas, Vector3.zero, progres);
+            
+            // BalokIsi naik perlahan (hanya sumbu Y)
+            balokIsi.localScale = Vector3.Lerp(skalaBalokAwal, skalaBalokAkhir, progres);
+
+            waktu += Time.deltaTime;
+            yield return null;
+        }
+
+        limasIsi.localScale = Vector3.zero;
+        balokIsi.localScale = skalaBalokAkhir;
+        
+        limasPenuh = false;
+        sedangAnimasi = false;
+        
+        // Tambah jumlah lapisan yang sudah diisi
+        currentVolume++;
+        UpdateUIVolume();
+
+        //Penjelasan
+        if (currentVolume >= gsm.targetLapis) 
+        {
+            gsm.arpyAnim.SetTrigger("doExpla");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lihat! untuk mengisi full balok ini perlu 3 isi limas."));
+            yield return StartCoroutine(gsm.TungguInputUser());
+
+            canvasRumusLimas.SetActive(true);
+            
+            gsm.arpyAnim.SetTrigger("doExpla");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Ini artinya volume limas adalah 1/3 dari volume balok"));
+            yield return StartCoroutine(gsm.TungguInputUser());
+            
+            gsm.arpyAnim.SetTrigger("doExpla");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Kita tahu bahwa rumus volume balok adalah p×l×t atau bisa kita bilang luas alas × tinggi."));
+            yield return StartCoroutine(gsm.TungguInputUser());
+            gsm.arpyAnim.SetTrigger("doExpla");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Dengan begitu kita dapatkan rumus volume limas adalah\n1/3 × luas alas × tinggi"));
+            yield return StartCoroutine(gsm.TungguInputUser());
+
+            // Jika sudah 3 kali, panggil fungsi tamat level 2
+            SelesaikanLevelVolume();
+        }
+        else
+        {
+            gsm.arpyAnim.SetTrigger("doExpla");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Isi telah berpindah ke balok!"));
+            yield return StartCoroutine(gsm.TungguInputUser()); 
+
+            if(currentVolume == 1)
+            {
+                gsm.arpyAnim.SetTrigger("doIdle2");
+                SFXManager.Instance.MainkanArpyNoise(2);
+                yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Balok disini memiliki tinggi dan luas alas yang sama dengan limas."));
+                yield return StartCoroutine(gsm.TungguInputUser()); 
+                
+                gsm.arpyAnim.SetTrigger("doIdle2");
+                SFXManager.Instance.MainkanArpyNoise(2);
+                yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lihat bahwa 1 isi limas sama dengan sedikit isi dari balok."));
+                yield return StartCoroutine(gsm.TungguInputUser()); 
+                
+                gsm.arpyAnim.SetTrigger("doExpla");
+                SFXManager.Instance.MainkanArpyNoise(2);
+                yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Disini kita ingin melihat perlu berapa isi limas untuk mengisi penuh balok ini."));
+                yield return StartCoroutine(gsm.TungguInputUser()); 
+            }
+
+            gsm.arpyAnim.SetTrigger("doIdle2");
+            SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Ayo isi limas lagi!"));
+            yield return StartCoroutine(gsm.TungguInputUser()); 
+            // Jika belum 3 kali, izinkan user mengetuk layar untuk mengisi limas kembali
+            this.enabled = true;
+        }
+
+    }
     // =========================================================
     // DIALOG & UI UPDATE
     // =========================================================
@@ -392,7 +566,7 @@ public class Level2Manager : MonoBehaviour
         }
     }
 
-    IEnumerator SequencePenjelasanPerLapis(int count)
+    IEnumerator SequencePenjelasanPerLapisKubus(int count)
     {
         this.enabled = false; // Matikan input selama dialog
 
@@ -558,6 +732,30 @@ public class Level2Manager : MonoBehaviour
             SelesaikanLevelVolume();
         }
     }
+    IEnumerator SequencePenjelasanLimas()
+    {
+        gsm.arpyAnim.SetTrigger("doHU");
+        SFXManager.Instance.MainkanArpyNoise(1);
+        yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Limas Terisi."));
+        yield return StartCoroutine(gsm.TungguInputUser()); 
+        
+        canvasTombolLimas.SetActive(true);
+        if (!LimasBalokTujuan.activeSelf)
+        {
+            LimasBalokTujuan.SetActive(true);
+
+            CubeAnimation anim = LimasBalokTujuan.GetComponent<CubeAnimation>();
+            if (anim != null)
+            {
+                anim.MunculkanKubus();
+            }
+        }
+
+        gsm.arpyAnim.SetTrigger("doExpla");
+        SFXManager.Instance.MainkanArpyNoise(2);
+        yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Ketuk tombol pindahkan isi!"));
+        yield return StartCoroutine(gsm.TungguInputUser()); 
+    }
 
     void SelesaikanLevelVolume()
     {
@@ -589,6 +787,13 @@ public class Level2Manager : MonoBehaviour
             gsm.uiManager.ShowCompletionPopup(
                 "Level Volume Selesai!", 
                 "Hebat! Kamu telah membuktikan bahwa Volume Balok = Panjang × Lebar × Tinggi.", 
+                bintangUntukDitampilkan);
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            gsm.uiManager.ShowCompletionPopup(
+                "Level Volume Selesai!", 
+                "Hebat! Kamu telah membuktikan bahwa Volume Limas = 1/3 × Luas Alas × Tinggi.", 
                 bintangUntukDitampilkan);
         }
     }

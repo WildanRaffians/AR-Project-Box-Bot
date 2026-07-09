@@ -82,6 +82,14 @@ public class GameSessionManager : MonoBehaviour
                 dialogKerangka = "Balok memiliki 6 sisi, 8 titik sudut dan 12 rusuk.";
                 teksPopupSelesaiSisi = "Luar biasa! Kini kamu tahu balok punya 6 sisi.";
                 break;
+            
+            case TipeBangun.LimasPersegi:
+                namaBangun = "limas persegi";
+                targetSisi = 5; targetSudut = 5; targetRusuk = 8;
+                targetLapis = 3; targetBuka = 4;
+                dialogKerangka = "Limas persegi memiliki 5 sisi, 5 titik sudut dan 8 rusuk.";
+                teksPopupSelesaiSisi = "Luar biasa! Kini kamu tahu limas persegi punya 5 sisi.";
+                break;
         }
 
         if (uiManager != null) uiManager.OnCubeFound(namaBangun);

@@ -11,29 +11,33 @@ public class Level1Manager : MonoBehaviour
     public GameObject KubusLevel1; 
     public GameObject prismaLevel1; 
     public GameObject balokLevel1; 
+    public GameObject limasLevel1; 
     
     [Header("Misi Sisi")]
     public GameObject faceGroupKubus;
     public GameObject faceGroupPrisma;
     public GameObject faceGroupBalok;
+    public GameObject faceGroupLimas;
     public int jumlahSisiDitemukan = 0;
 
     [Header("Misi Sudut")]
     public GameObject vertexGroup; 
     public GameObject vertexGroupPrisma; 
     public GameObject vertexGroupBalok; 
+    public GameObject vertexGroupLimas; 
     public int jumlahVertexDitemukan = 0;
 
     [Header("Misi Rusuk")]
     public GameObject edgeGroup;
     public GameObject edgeGroupPrisma;
     public GameObject edgeGroupBalok;
+    public GameObject edgeGroupLimas;
     public int jumlahRusukDitemukan = 0;
 
     [Header("Referensi Unsur (Glow)")]
-    public ObjectGlow efekSisi; public ObjectGlow efekSisiPrisma; public ObjectGlow efekSisiBalok; 
-    public ObjectGlow efekSudut; public ObjectGlow efekSudutPrisma; public ObjectGlow efekSudutBalok;
-    public ObjectGlow efekRusuk; public ObjectGlow efekRusukPrisma; public ObjectGlow efekRusukBalok;
+    public ObjectGlow efekSisi; public ObjectGlow efekSisiPrisma; public ObjectGlow efekSisiBalok; public ObjectGlow efekSisiLimas; 
+    public ObjectGlow efekSudut; public ObjectGlow efekSudutPrisma; public ObjectGlow efekSudutBalok; public ObjectGlow efekSudutLimas;
+    public ObjectGlow efekRusuk; public ObjectGlow efekRusukPrisma; public ObjectGlow efekRusukBalok; public ObjectGlow efekRusukLimas;
 
     // =========================================================
     // INPUT RAYCAST KHUSUS LEVEL 1
@@ -120,6 +124,7 @@ public class Level1Manager : MonoBehaviour
         } 
         else if(gsm.namaBangun == "prisma segitiga") { if (efekSisiPrisma != null) efekSisiPrisma.SetGlow(true); }
         else if(gsm.namaBangun == "balok") { if (efekSisiBalok != null) efekSisiBalok.SetGlow(true); }
+        else if(gsm.namaBangun == "limas persegi") { if (efekSisiLimas != null) efekSisiLimas.SetGlow(true); }
 
         yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Sisi merupakan permukaan atau “kulit luar” pada bangun ruang."));
         yield return StartCoroutine(gsm.TungguInputUser());
@@ -132,6 +137,7 @@ public class Level1Manager : MonoBehaviour
         if (efekSisi != null) efekSisi.SetGlow(false); 
         if (efekSisiPrisma != null) efekSisiPrisma.SetGlow(false); 
         if (efekSisiBalok != null) efekSisiBalok.SetGlow(false); 
+        if (efekSisiLimas != null) efekSisiLimas.SetGlow(false); 
         
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(2);
@@ -158,6 +164,11 @@ public class Level1Manager : MonoBehaviour
         else if(gsm.namaBangun == "balok")
         {
             FaceController[] semuaSisi = faceGroupBalok.GetComponentsInChildren<FaceController>();
+            foreach (FaceController sisi in semuaSisi) { if (sisi != null) sisi.AktifkanInteraksi(); }
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            FaceController[] semuaSisi = faceGroupLimas.GetComponentsInChildren<FaceController>();
             foreach (FaceController sisi in semuaSisi) { if (sisi != null) sisi.AktifkanInteraksi(); }
         }
 
@@ -225,6 +236,11 @@ public class Level1Manager : MonoBehaviour
             faceGroup1.HilangkanKubus();
             edgeGroup.SetActive(false); 
         }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            FaceController[] semuaSisi = faceGroupLimas.GetComponentsInChildren<FaceController>();
+            foreach (FaceController sisi in semuaSisi) { if (sisi != null) sisi.ResetSisi(); }        
+        }
         
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(1);
@@ -240,6 +256,7 @@ public class Level1Manager : MonoBehaviour
         } 
         else if(gsm.namaBangun == "prisma segitiga") { if (efekSudutPrisma != null) efekSudutPrisma.SetGlow(true); }
         else if(gsm.namaBangun == "balok") { if (efekSudutBalok != null) efekSudutBalok.SetGlow(true); }
+        else if(gsm.namaBangun == "limas persegi") { if (efekSudutLimas != null) efekSudutLimas.SetGlow(true); }
 
         gsm.arpyAnim.SetTrigger("doExpla");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -254,6 +271,7 @@ public class Level1Manager : MonoBehaviour
         if (efekSudut != null) efekSudut.SetGlow(false); 
         if (efekSudutPrisma != null) efekSudutPrisma.SetGlow(false); 
         if (efekSudutBalok != null) efekSudutBalok.SetGlow(false); 
+        if (efekSudutLimas != null) efekSudutLimas.SetGlow(false); 
 
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(2);
@@ -271,6 +289,11 @@ public class Level1Manager : MonoBehaviour
         else if(gsm.namaBangun == "balok")
         {
             VertexController[] semuaSudut = vertexGroupBalok.GetComponentsInChildren<VertexController>();
+            foreach (VertexController sudut in semuaSudut) { if (sudut != null) sudut.AktifkanInteraksi(); }
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            VertexController[] semuaSudut = vertexGroupLimas.GetComponentsInChildren<VertexController>();
             foreach (VertexController sudut in semuaSudut) { if (sudut != null) sudut.AktifkanInteraksi(); }
         }
         
@@ -343,6 +366,11 @@ public class Level1Manager : MonoBehaviour
             VertexController[] semuaSudut = vertexGroupBalok.GetComponentsInChildren<VertexController>();
             foreach (VertexController sudut in semuaSudut) { if (sudut != null) sudut.ResetSudut(); }
         }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            VertexController[] semuaSudut = vertexGroupLimas.GetComponentsInChildren<VertexController>();
+            foreach (VertexController sudut in semuaSudut) { if (sudut != null) sudut.ResetSudut(); }
+        }
 
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(2);
@@ -361,6 +389,7 @@ public class Level1Manager : MonoBehaviour
         }
         else if(gsm.namaBangun == "prisma segitiga") { if (efekRusukPrisma != null) efekRusukPrisma.SetGlow(true); }
         else if(gsm.namaBangun == "balok") { if (efekRusukBalok != null) efekRusukBalok.SetGlow(true); }
+        else if(gsm.namaBangun == "limas persegi") { if (efekRusukLimas != null) efekRusukLimas.SetGlow(true); }
         
         yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Rusuk merupakan garis pertemuan antara dua sisi."));
         yield return StartCoroutine(gsm.TungguInputUser());
@@ -373,6 +402,7 @@ public class Level1Manager : MonoBehaviour
         if (efekRusuk != null) efekRusuk.SetGlow(false); 
         if (efekRusukPrisma != null) efekRusukPrisma.SetGlow(false);
         if (efekRusukBalok != null) efekRusukBalok.SetGlow(false);
+        if (efekRusukLimas != null) efekRusukLimas.SetGlow(false);
 
         gsm.arpyAnim.SetTrigger("doIdle2");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -390,6 +420,11 @@ public class Level1Manager : MonoBehaviour
         else if(gsm.namaBangun == "balok")
         {
             EdgeController[] semuaRusuk = edgeGroupBalok.GetComponentsInChildren<EdgeController>();
+            foreach (EdgeController rusuk in semuaRusuk) { if (rusuk != null) rusuk.AktifkanInteraksi(); }
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            EdgeController[] semuaRusuk = edgeGroupLimas.GetComponentsInChildren<EdgeController>();
             foreach (EdgeController rusuk in semuaRusuk) { if (rusuk != null) rusuk.AktifkanInteraksi(); }
         }
         
@@ -415,7 +450,8 @@ public class Level1Manager : MonoBehaviour
         if(jumlahRusukDitemukan == 1) {
             gsm.arpyAnim.SetTrigger("doIdle2");
             gsm.uiManager.ShowCubeExplanation("Kamu memang hebat!"); 
-        } else if(jumlahRusukDitemukan == 3) {
+        } 
+        else if(jumlahRusukDitemukan == 3) {
             gsm.arpyAnim.SetTrigger("doExpla");
             gsm.uiManager.ShowCubeExplanation("Ayo semangat!"); 
         }
@@ -447,6 +483,11 @@ public class Level1Manager : MonoBehaviour
         else if(gsm.namaBangun == "balok")
         {
             EdgeController[] semuaRusuk = edgeGroupBalok.GetComponentsInChildren<EdgeController>();
+            foreach (EdgeController rusuk in semuaRusuk) { if (rusuk != null) rusuk.ResetRusuk(); }
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            EdgeController[] semuaRusuk = edgeGroupLimas.GetComponentsInChildren<EdgeController>();
             foreach (EdgeController rusuk in semuaRusuk) { if (rusuk != null) rusuk.ResetRusuk(); }
         }
 

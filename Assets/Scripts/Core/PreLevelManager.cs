@@ -25,6 +25,7 @@ public class PreLevelManager : MonoBehaviour
     public GameObject kubusSolid;
     public GameObject prismaSolid;
     public GameObject balokSolid;
+    public GameObject limasSolid;
     
     [Header("Lainnya")]
     string pesanArpy;
@@ -78,17 +79,19 @@ public class PreLevelManager : MonoBehaviour
         objekBangunAktif = prismaSolid;
         NyalakanLantai(); 
     }
-    public void OnBalokFound()
+    
+    public void OnLimasFound()
     {
-        GameSessionManager.Instance.SetupDataBangun(GameSessionManager.TipeBangun.Balok);
+        GameSessionManager.Instance.SetupDataBangun(GameSessionManager.TipeBangun.LimasPersegi);
         MatikanSemuaTracker();
-        namaBangun = "balok";
+        namaBangun = "limas persegi";
 
-        balokSolid.SetActive(true); // Siapkan prisma virtual
+        limasSolid.SetActive(true); // Siapkan prisma virtual
         
         kubusSolid.SetActive(false);
         prismaSolid.SetActive(false);
-        objekBangunAktif = balokSolid;
+        kubusSolid.SetActive(false);
+        objekBangunAktif = limasSolid;
         NyalakanLantai(); 
     }
     

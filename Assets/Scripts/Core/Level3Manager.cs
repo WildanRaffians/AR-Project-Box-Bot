@@ -16,6 +16,8 @@ public class Level3Manager : MonoBehaviour
     public GameObject PrismaLevel2;
     public GameObject BalokLevel1;
     public GameObject BalokLevel2;
+    public GameObject LimasLevel1;
+    public GameObject LimasLevel2;
 
     [Header("Status Level 3")]
     public FaseLevel3 faseSekarang = FaseLevel3.Pengenalan;
@@ -44,10 +46,19 @@ public class Level3Manager : MonoBehaviour
     public GameObject papanRumusLPBalok; 
     public GameObject[] prefabVariasiBalok; 
 
+
+    [Header("Level 3 Limas")]
+    public GameObject LimasLevel3;
+    public Animator jaringAnimatorLimas;
+    public GameObject papanRumusLPLimas; 
+    public GameObject[] prefabVariasiLimas; 
+
+
     [Header("Referensi Unsur (Glow)")]
     public ObjectGlow efekJaring;
     public ObjectGlow efekJaringPrisma;
     public ObjectGlow efekJaringBalok;
+    public ObjectGlow efekJaringLimas;
 
     // =========================================================
     // INPUT KHUSUS LEVEL 3
@@ -82,7 +93,7 @@ public class Level3Manager : MonoBehaviour
                 return;
             }
 
-            if (hit.collider.CompareTag("SisiKubus") || hit.collider.CompareTag("SisiPrisma") || hit.collider.CompareTag("SisiBalok"))
+            if (hit.collider.CompareTag("SisiKubus") || hit.collider.CompareTag("SisiPrisma") || hit.collider.CompareTag("SisiBalok") || hit.collider.CompareTag("SisiLimas"))
             {
                 SFXManager.Instance.MainkanClick2();
                 switch (faseSekarang)
@@ -105,11 +116,13 @@ public class Level3Manager : MonoBehaviour
             lvl1.KubusLevel1.SetActive(false);
             lvl1.prismaLevel1.SetActive(false);
             lvl1.balokLevel1.SetActive(false);
+            lvl1.limasLevel1.SetActive(false);
         }
         
         if (gsm.namaBangun == "kubus") KubusLevel3.SetActive(false);
         else if (gsm.namaBangun == "prisma segitiga") PrismaLevel3.SetActive(false); 
         else if (gsm.namaBangun == "balok") BalokLevel3.SetActive(false); 
+        else if (gsm.namaBangun == "limas persegi") LimasLevel3.SetActive(false); 
 
         countSisiTerbuka = 0; openStep = 0; varianTerbuka = 0;
         gsm.TagLevel.text = "Level 3";
@@ -130,20 +143,12 @@ public class Level3Manager : MonoBehaviour
         yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Selamat kamu sudah mencapai level 3!"));
         yield return StartCoroutine(gsm.TungguInputUser());
 
-        // // Menghilangkan Kubus Level 2
-        // Level2Manager lvl2 = gsm.level2Manager as Level2Manager;
-        // if (lvl2 != null)
-        // {
-        //     if (gsm.namaBangun == "kubus") lvl2.KubusLevel2.GetComponent<CubeAnimation>()?.HilangkanKubus();
-        //     else if (gsm.namaBangun == "prisma segitiga") lvl2.PrismaLevel2.GetComponent<CubeAnimation>()?.HilangkanKubus();
-        //     else if (gsm.namaBangun == "balok") lvl2.BalokLevel2.GetComponent<CubeAnimation>()?.HilangkanKubus();
-        // }
-
         LoadLevel3();
 
         if (gsm.namaBangun == "kubus") efekJaring.SetGlow(true); 
         else if (gsm.namaBangun == "prisma segitiga") efekJaringPrisma.SetGlow(true); 
         if (gsm.namaBangun == "balok") efekJaringBalok.SetGlow(true); 
+        if (gsm.namaBangun == "limas persegi") efekJaringLimas.SetGlow(true); 
         
         gsm.arpyAnim.SetTrigger("doExpla");
         SFXManager.Instance.MainkanArpyNoise(2);
@@ -153,6 +158,7 @@ public class Level3Manager : MonoBehaviour
         if (efekJaring != null) efekJaring.SetGlow(false); 
         if (efekJaringPrisma != null) efekJaringPrisma.SetGlow(false); 
         if (efekJaringBalok != null) efekJaringBalok.SetGlow(false); 
+        if (efekJaringLimas != null) efekJaringLimas.SetGlow(false); 
         
         gsm.arpyAnim.SetTrigger("doExpla");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -187,6 +193,13 @@ public class Level3Manager : MonoBehaviour
             BalokLevel3.SetActive(true);
             BalokLevel3.GetComponent<CubeAnimation>()?.MunculkanKubus();
         }
+        else if (gsm.namaBangun == "limas persegi") {
+            LimasLevel1.GetComponent<CubeAnimation>()?.HilangkanKubus();
+            LimasLevel2.GetComponent<CubeAnimation>()?.HilangkanKubus();
+
+            LimasLevel3.SetActive(true);
+            LimasLevel3.GetComponent<CubeAnimation>()?.MunculkanKubus();
+        }
     }
 
     // =========================================================
@@ -201,6 +214,7 @@ public class Level3Manager : MonoBehaviour
         if (gsm.namaBangun == "kubus") jaringAnimator.SetTrigger("doBuka");
         else if (gsm.namaBangun == "prisma segitiga") jaringAnimatorPrisma.SetTrigger("doBuka"); 
         else if (gsm.namaBangun == "balok") jaringAnimatorBalok.SetTrigger("doBuka"); 
+        else if (gsm.namaBangun == "limas persegi") jaringAnimatorLimas.SetTrigger("doBuka"); 
         
         UpdateUIPermukaan();
 
@@ -241,6 +255,7 @@ public class Level3Manager : MonoBehaviour
         if(gsm.namaBangun == "kubus") KubusLevel3.GetComponent<CubeAnimation>()?.HilangkanKubus();
         else if(gsm.namaBangun == "prisma segitiga") PrismaLevel3.GetComponent<CubeAnimation>()?.HilangkanKubus();
         else if(gsm.namaBangun == "balok") BalokLevel3.GetComponent<CubeAnimation>()?.HilangkanKubus();
+        else if(gsm.namaBangun == "limas persegi") LimasLevel3.GetComponent<CubeAnimation>()?.HilangkanKubus();
 
         float spacing = 0.22f; 
         GameObject[] arrayTarget = null;
@@ -249,7 +264,8 @@ public class Level3Manager : MonoBehaviour
 
         if(gsm.namaBangun == "kubus") { arrayTarget = prefabVariasi; titikPusat = jaringAnimator.transform; }
         else if(gsm.namaBangun == "prisma segitiga") { arrayTarget = prefabVariasiPrisma; titikPusat = jaringAnimatorPrisma.transform; zOffset = 0.5f; }
-        else if(gsm.namaBangun == "balok") { arrayTarget = prefabVariasiBalok; titikPusat = jaringAnimatorPrisma.transform; }
+        else if(gsm.namaBangun == "balok") { arrayTarget = prefabVariasiBalok; titikPusat = jaringAnimatorBalok.transform; }
+        else if(gsm.namaBangun == "limas persegi") { arrayTarget = prefabVariasiLimas; titikPusat = jaringAnimatorLimas.transform; }
 
         if (arrayTarget != null && titikPusat != null)
         {
@@ -308,6 +324,7 @@ public class Level3Manager : MonoBehaviour
         if (gsm.namaBangun == "kubus") efekJaring.SetGlow(true); 
         else if (gsm.namaBangun == "prisma segitiga") efekJaringPrisma.SetGlow(true); 
         if (gsm.namaBangun == "balok") efekJaringBalok.SetGlow(true); 
+        if (gsm.namaBangun == "limas persegi") efekJaringLimas.SetGlow(true); 
 
         gsm.arpyAnim.SetTrigger("doExpla");
         SFXManager.Instance.MainkanArpyNoise(3);
@@ -322,6 +339,7 @@ public class Level3Manager : MonoBehaviour
         if (efekJaring != null) efekJaring.SetGlow(false); 
         if (efekJaringPrisma != null) efekJaringPrisma.SetGlow(false); 
         if (efekJaringBalok != null) efekJaringBalok.SetGlow(false); 
+        if (efekJaringLimas != null) efekJaringLimas.SetGlow(false); 
     }
 
     void HandleColoringSisi(GameObject boneYangDitap)
@@ -352,6 +370,13 @@ public class Level3Manager : MonoBehaviour
             else if (n.Contains("005")) rend = GameObject.Find("CubeKiri")?.GetComponent<Renderer>();
             else if (n.Contains("006")) rend = GameObject.Find("CubeDepan")?.GetComponent<Renderer>();
         }
+        else if(gsm.namaBangun == "limas persegi") {
+            if (n == "Bone") rend = GameObject.Find("LimasSisiAlas")?.GetComponent<Renderer>();
+            else if (n.Contains("001")) rend = GameObject.Find("LimasSisi3")?.GetComponent<Renderer>();
+            else if (n.Contains("004")) rend = GameObject.Find("LimasSisi1")?.GetComponent<Renderer>();
+            else if (n.Contains("005")) rend = GameObject.Find("LimasSisi4")?.GetComponent<Renderer>();
+            else if (n.Contains("006")) rend = GameObject.Find("LimasSisi2")?.GetComponent<Renderer>();
+        }
 
         if (rend != null && rend.material.color != Color.yellow)
         {
@@ -372,6 +397,9 @@ public class Level3Manager : MonoBehaviour
             papanRumusLPPrisma.SetActive(true);   
         } else if(gsm.namaBangun == "balok") {
             papanRumusLPBalok.SetActive(true);   
+        }
+        else if(gsm.namaBangun == "limas persegi") {
+            papanRumusLPLimas.SetActive(true);   
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -407,6 +435,15 @@ public class Level3Manager : MonoBehaviour
             if (efekJaringBalok != null) efekJaringBalok.SetGlow(false);
             gsm.arpyAnim.SetTrigger("doExpla"); SFXManager.Instance.MainkanArpyNoise(2);
             yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumus luas permukaan = 2(pl) + 2(pt) + 2(lt)"));
+            yield return StartCoroutine(gsm.TungguInputUser());
+        }
+        else if(gsm.namaBangun == "limas persegi")
+        {
+            gsm.arpyAnim.SetTrigger("doHU"); SFXManager.Instance.MainkanArpyNoise(1);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Lengkap! Ada 1 persegi dan 4 segitiga."));
+            yield return StartCoroutine(gsm.TungguInputUser());
+            gsm.arpyAnim.SetTrigger("doExpla"); SFXManager.Instance.MainkanArpyNoise(2);
+            yield return StartCoroutine(gsm.uiManager.AnimasiDialog("Maka rumus luas permukaan = (sisi × sisi) + 4 (1/2 × alas segitiga × tinggi segitiga)"));
             yield return StartCoroutine(gsm.TungguInputUser());
         }
 
